@@ -34,4 +34,6 @@ prop_replace 'nifi.cluster.load.balance.host'                    "${NIFI_CLUSTER
 # alternately we could use '.' instead of source
 source ${sierra_scripts_dir}/fetch_certificate.sh
 
+${sierra_scripts_dir}/set_authorizers.sh
+
 ${NIFI_BASE_DIR}/scripts/start.sh

@@ -25,9 +25,9 @@ read_property () {
   echo $(cat ${target_file} | grep $1 | cut -d'=' -f2)
 }
 
-# 1 - xpath
-# 2 - attribute name
-# 3 - attribute value
+# 1 - xpath to property
+# 2 - property name
+# 3 - property value
 # 4 - xml file
 add_xml_property () {
     last_element_name=xmlstarlet sel -t -m "$1[last()]" -v "name()" -n $4
