@@ -13,6 +13,12 @@ if [ -f ${NIFI_HOME}/conf/nifi.properties_base ]; then
 fi
 
 # run property mapper
+# we use source since we want all the exported variables from map-properties.sh
+# to be set in the scope of our script, which does not work if we just use
+# ${sierra_scripts_dir}/map-properties.sh
+# alternately we could use '.' instead of source
+source ${sierra_scripts_dir}/map-properties.sh
+
 
 # Set cluster protocol to be secure if auth is tls or ldap
 if [[ ${AUTH} =~ ^(tls|ldap)$ ]]; then
@@ -27,8 +33,5 @@ prop_replace 'nifi.cluster.load.balance.host'                    "${NIFI_CLUSTER
 # ${sierra_scripts_dir}/fetch_certificate.sh
 # alternately we could use '.' instead of source
 source ${sierra_scripts_dir}/fetch_certificate.sh
-
-echo 'run.sh $KEYSTORE_PATH'
-echo ${KEYSTORE_PATH}
 
 ${NIFI_BASE_DIR}/scripts/start.sh

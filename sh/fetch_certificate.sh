@@ -3,7 +3,6 @@ if ! ( [ -z ${CA_SERVER} ] || [ -z ${CA_TOKEN} ] ); then
 
     KEYSTORE_PATH=${KEYSTORE_PATH:=${NIFI_HOME}/conf/keystore.jks}
     TRUSTSTORE_PATH=${TRUSTSTORE_PATH:=${NIFI_HOME}/conf/truststore.jks}
-    echo ${KEYSTORE_PATH}
     cert_path=${NIFI_HOME}/conf/nifi-cert.pem
     config_json_path=${NIFI_HOME}/conf/config.json
 
@@ -29,7 +28,5 @@ if ! ( [ -z ${CA_SERVER} ] || [ -z ${CA_TOKEN} ] ); then
         export KEY_PASSWORD=$(cat ${config_json_path} | jq -r '.keyPassword')
         export KEYSTORE_TYPE=$(cat ${config_json_path} | jq -r '.keyStoreType')
         export TRUSTSTORE_TYPE=$(cat ${config_json_path} | jq -r '.trustStoreType')
-        echo 'fetch_certificate.sh $KEYSTORE_PATH'
-        echo ${KEYSTORE_PATH}
     fi
 fi

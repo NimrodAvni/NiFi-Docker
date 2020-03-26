@@ -22,7 +22,7 @@ read_xml_property () {
 # 2 - file to look property in
 read_property () {
   target_file=${2:-${nifi_props_file}}
-  echo $(cat ${target_file} | grep $1 | cut -d'' -f2)
+  echo $(cat ${target_file} | grep $1 | cut -d'=' -f2)
 }
 
 # 1 - xpath

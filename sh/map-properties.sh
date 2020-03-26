@@ -4,7 +4,7 @@
 # if the config files are empty they will be assigned a default value by the official apache/nifi start.sh script
 scripts_dir='/opt/nifi/scripts/sierra'
 
-[ -f "${scripts_dir}/sierra_common.sh" ] && . "${scripts_dir}/common.sh"
+[ -f "${scripts_dir}/sierra_common.sh" ] && . "${scripts_dir}/sierra_common.sh"
 
 
 # nifi.properties environment variables
@@ -35,20 +35,20 @@ export NIFI_WEB_HTTPS_HOST=${NIFI_WEB_HTTPS_HOST:=`read_property 'nifi.web.https
 export NIFI_WEB_PROXY_HOST=${NIFI_WEB_PROXY_HOST:=`read_property 'nifi.web.proxy.host']`}
 
 # login-identity-providers.xml environment variables
-export LDAP_AUTHENTICATION_STRATEGY=${LDAP_AUTHENTICATION_STRATEGY:=`read_xml_property 'Authentication Strategy' login_providers_property_xpath login_providers_file`}
-export LDAP_MANAGER_DN=${LDAP_MANAGER_DN:=`read_xml_property 'Manager DN' login_providers_property_xpath login_providers_file`}
-export LDAP_MANAGER_PASSWORD=${LDAP_MANAGER_PASSWORD:=`read_xml_property 'Manager Password' login_providers_property_xpath login_providers_file`}
-export LDAP_TLS_KEYSTORE=${LDAP_TLS_KEYSTORE:=`read_xml_property 'TLS - Keystore' login_providers_property_xpath login_providers_file`}
-export LDAP_TLS_KEYSTORE_PASSWORD=${LDAP_TLS_KEYSTORE_PASSWORD:=`read_xml_property 'TLS - Keystore Password' login_providers_property_xpath login_providers_file`}
-export LDAP_TLS_KEYSTORE_TYPE=${LDAP_TLS_KEYSTORE_TYPE:=`read_xml_property 'TLS - Keystore Type' login_providers_property_xpath login_providers_file`}
-export LDAP_TLS_TRUSTSTORE=${LDAP_TLS_TRUSTSTORE:=`read_xml_property 'TLS - Truststore' login_providers_property_xpath login_providers_file`}
-export LDAP_TLS_TRUSTSTORE_PASSWORD=${LDAP_TLS_TRUSTSTORE_PASSWORD:=`read_xml_property 'TLS - Truststore Password' login_providers_property_xpath login_providers_file`}
-export LDAP_TLS_TRUSTSTORE_TYPE=${LDAP_TLS_TRUSTSTORE_TYPE:=`read_xml_property 'TLS - Truststore Type' login_providers_property_xpath login_providers_file`}
-export LDAP_TLS_PROTOCOL=${LDAP_TLS_PROTOCOL:=`read_xml_property 'TLS - Protocol' login_providers_property_xpath login_providers_file`}
-export LDAP_URL=${LDAP_URL:=`read_xml_property 'Url' login_providers_property_xpath login_providers_file`}
-export LDAP_USER_SEARCH_BASE=${LDAP_USER_SEARCH_BASE:=`read_xml_property 'User Search Base' login_providers_property_xpath login_providers_file`}
-export LDAP_USER_SEARCH_FILTER=${LDAP_USER_SEARCH_FILTER:=`read_xml_property 'User Search Filter' login_providers_property_xpath login_providers_file`}
-export LDAP_IDENTITY_STRATEGY=${LDAP_IDENTITY_STRATEGY:=`read_xml_property 'Identity Strategy' login_providers_property_xpath login_providers_file`}
+export LDAP_AUTHENTICATION_STRATEGY=${LDAP_AUTHENTICATION_STRATEGY:=`read_xml_property 'Authentication Strategy' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_MANAGER_DN=${LDAP_MANAGER_DN:=`read_xml_property 'Manager DN' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_MANAGER_PASSWORD=${LDAP_MANAGER_PASSWORD:=`read_xml_property 'Manager Password' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_TLS_KEYSTORE=${LDAP_TLS_KEYSTORE:=`read_xml_property 'TLS - Keystore' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_TLS_KEYSTORE_PASSWORD=${LDAP_TLS_KEYSTORE_PASSWORD:=`read_xml_property 'TLS - Keystore Password' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_TLS_KEYSTORE_TYPE=${LDAP_TLS_KEYSTORE_TYPE:=`read_xml_property 'TLS - Keystore Type' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_TLS_TRUSTSTORE=${LDAP_TLS_TRUSTSTORE:=`read_xml_property 'TLS - Truststore' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_TLS_TRUSTSTORE_PASSWORD=${LDAP_TLS_TRUSTSTORE_PASSWORD:=`read_xml_property 'TLS - Truststore Password' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_TLS_TRUSTSTORE_TYPE=${LDAP_TLS_TRUSTSTORE_TYPE:=`read_xml_property 'TLS - Truststore Type' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_TLS_PROTOCOL=${LDAP_TLS_PROTOCOL:=`read_xml_property 'TLS - Protocol' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_URL=${LDAP_URL:=`read_xml_property 'Url' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_USER_SEARCH_BASE=${LDAP_USER_SEARCH_BASE:=`read_xml_property 'User Search Base' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_USER_SEARCH_FILTER=${LDAP_USER_SEARCH_FILTER:=`read_xml_property 'User Search Filter' ${login_providers_property_xpath} ${login_providers_file}`}
+export LDAP_IDENTITY_STRATEGY=${LDAP_IDENTITY_STRATEGY:=`read_xml_property 'Identity Strategy' ${login_providers_property_xpath} ${login_providers_file}`}
 
 # authorizers.xml environment variables
-export LDAP_IDENTITY_STRATEGY=${LDAP_IDENTITY_STRATEGY:=`read_xml_property 'Initial Admin Identity' access_policy_property_xpathnim authorizers_file`}
+export LDAP_IDENTITY_STRATEGY=${LDAP_IDENTITY_STRATEGY:=`read_xml_property 'Initial Admin Identity' ${access_policy_property_xpath} ${authorizers_file}`}
