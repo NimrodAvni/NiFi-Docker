@@ -12,7 +12,7 @@ if ! ( [ -z ${CA_SERVER} ] || [ -z ${CA_TOKEN} ] ); then
         certificate_owner="${NODE_IDENTITY:-"CN="${HOSTNAME}", OU=NIFI"}"
         # Generate certificate
         echo "Generating Certificate from CA ${CA_SERVER} for ${certificate_owner}"
-        ${NIFI_TOOLKIT_HOME}/bin/tls-toolkit.sh client -D "${certificate_owner}" -c "${CA_SERVER}" -t "${CA_TOKEN}" -p "${CA_PORT:-8443}" --subjectAlternativeNames "${subject_alternative_names}"
+        ${NIFI_TOOLKIT_HOME}/bin/tls-toolkit.sh client -D "${certificate_owner}" --certificateAuthorityHostname "${CA_SERVER}" --token "${CA_TOKEN}" --PORT "${CA_PORT:-8443}" --subjectAlternativeNames "${subject_alternative_names}"
 
         # Move all files generated to their correct location
         mv ./keystore.jks ${KEYSTORE_PATH}
