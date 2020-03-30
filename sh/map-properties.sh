@@ -8,31 +8,31 @@ scripts_dir='/opt/nifi/scripts/sierra'
 
 
 # nifi.properties environment variables
-export NIFI_WEB_HTTP_PORT=${NIFI_WEB_HTTP_PORT:=`read_property 'nifi.web.http.port']`}
-export NIFI_WEB_HTTP_HOST=${NIFI_WEB_HTTP_HOST:=`read_property 'nifi.web.http.host']`}
-export NIFI_REMOTE_INPUT_HOST=${NIFI_REMOTE_INPUT_HOST:=`read_property 'nifi.remote.input.host']`}
-export NIFI_REMOTE_INPUT_SOCKET_PORT=${NIFI_REMOTE_INPUT_SOCKET_PORT:=`read_property 'nifi.remote.input.socket.port']`}
-export NIFI_VARIABLE_REGISTRY_PROPERTIES=${NIFI_VARIABLE_REGISTRY_PROPERTIES:=`read_property 'nifi.variable.registry.properties']`}
-export NIFI_CLUSTER_IS_NODE=${NIFI_CLUSTER_IS_NODE:=`read_property 'nifi.cluster.is.node']`}
-export NIFI_CLUSTER_ADDRESS=${NIFI_CLUSTER_ADDRESS:=`read_property 'nifi.cluster.node.address']`}
-export NIFI_CLUSTER_NODE_PROTOCOL_PORT=${NIFI_CLUSTER_NODE_PROTOCOL_PORT:=`read_property 'nifi.cluster.node.protocol.port']`}
-export NIFI_CLUSTER_NODE_PROTOCOL_THREADS=${NIFI_CLUSTER_NODE_PROTOCOL_THREADS:=`read_property 'nifi.cluster.node.protocol.threads']`}
-export NIFI_CLUSTER_NODE_PROTOCOL_MAX_THREADS=${NIFI_CLUSTER_NODE_PROTOCOL_MAX_THREADS:=`read_property 'nifi.cluster.node.protocol.max.threads']`}
-export NIFI_ZK_CONNECT_STRING=${NIFI_ZK_CONNECT_STRING:=`read_property 'nifi.zookeeper.connect.string']`}
-export NIFI_ZK_ROOT_NODE=${NIFI_ZK_ROOT_NODE:=`read_property 'nifi.zookeeper.root.node']`}
-export NIFI_ELECTION_MAX_WAIT=${NIFI_ELECTION_MAX_WAIT:=`read_property 'nifi.cluster.flow.election.max.wait.time']`}
-export NIFI_ELECTION_MAX_CANDIDATES=${NIFI_ELECTION_MAX_CANDIDATES:=`read_property 'nifi.cluster.flow.election.max.candidates']`}
-export NIFI_WEB_PROXY_CONTEXT_PATH=${NIFI_WEB_PROXY_CONTEXT_PATH:=`read_property 'nifi.web.proxy.context.path']`}
-export KEYSTORE_PATH=${KEYSTORE_PATH:=`read_property 'nifi.security.keystore']`}
-export KEYSTORE_TYPE=${KEYSTORE_TYPE:=`read_property 'nifi.security.keystoreType']`}
-export KEYSTORE_PASSWORD=${KEYSTORE_PASSWORD:=`read_property 'nifi.security.keystorePasswd']`}
-export KEY_PASSWORD=${KEY_PASSWORD:=`read_property 'nifi.security.keyPasswd']`}
-export TRUSTSTORE_PATH=${TRUSTSTORE_PATH:=`read_property 'nifi.security.truststore']`}
-export TRUSTSTORE_TYPE=${TRUSTSTORE_TYPE:=`read_property 'nifi.security.truststoreType']`}
-export TRUSTSTORE_PASSWORD=${TRUSTSTORE_PASSWORD:=`read_property 'nifi.security.truststorePasswd']`}
-export NIFI_WEB_HTTPS_PORT=${NIFI_WEB_HTTPS_PORT:=`read_property 'nifi.web.https.port']`}
-export NIFI_WEB_HTTPS_HOST=${NIFI_WEB_HTTPS_HOST:=`read_property 'nifi.web.https.host']`}
-export NIFI_WEB_PROXY_HOST=${NIFI_WEB_PROXY_HOST:=`read_property 'nifi.web.proxy.host']`}
+export NIFI_WEB_HTTP_PORT=${NIFI_WEB_HTTP_PORT:=`read_property 'nifi.web.http.port'`}
+export NIFI_WEB_HTTP_HOST=${NIFI_WEB_HTTP_HOST:=`read_property 'nifi.web.http.host'`}
+export NIFI_REMOTE_INPUT_HOST=${NIFI_REMOTE_INPUT_HOST:=`read_property 'nifi.remote.input.host'`}
+export NIFI_REMOTE_INPUT_SOCKET_PORT=${NIFI_REMOTE_INPUT_SOCKET_PORT:=`read_property 'nifi.remote.input.socket.port'`}
+export NIFI_VARIABLE_REGISTRY_PROPERTIES=${NIFI_VARIABLE_REGISTRY_PROPERTIES:=`read_property 'nifi.variable.registry.properties'`}
+export NIFI_CLUSTER_IS_NODE=${NIFI_CLUSTER_IS_NODE:=`read_property 'nifi.cluster.is.node'`}
+export NIFI_CLUSTER_ADDRESS=${NIFI_CLUSTER_ADDRESS:=`read_property 'nifi.cluster.node.address'`}
+export NIFI_CLUSTER_NODE_PROTOCOL_PORT=${NIFI_CLUSTER_NODE_PROTOCOL_PORT:=`read_property 'nifi.cluster.node.protocol.port'`}
+export NIFI_CLUSTER_NODE_PROTOCOL_THREADS=${NIFI_CLUSTER_NODE_PROTOCOL_THREADS:=`read_property 'nifi.cluster.node.protocol.threads'`}
+export NIFI_CLUSTER_NODE_PROTOCOL_MAX_THREADS=${NIFI_CLUSTER_NODE_PROTOCOL_MAX_THREADS:=`read_property 'nifi.cluster.node.protocol.max.threads'`}
+export NIFI_ZK_CONNECT_STRING=${NIFI_ZK_CONNECT_STRING:=`read_property 'nifi.zookeeper.connect.string'`}
+export NIFI_ZK_ROOT_NODE=${NIFI_ZK_ROOT_NODE:=`read_property 'nifi.zookeeper.root.node'`}
+export NIFI_ELECTION_MAX_WAIT=${NIFI_ELECTION_MAX_WAIT:=`read_property 'nifi.cluster.flow.election.max.wait.time'`}
+export NIFI_ELECTION_MAX_CANDIDATES=${NIFI_ELECTION_MAX_CANDIDATES:=`read_property 'nifi.cluster.flow.election.max.candidates'`}
+export NIFI_WEB_PROXY_CONTEXT_PATH=${NIFI_WEB_PROXY_CONTEXT_PATH:=`read_property 'nifi.web.proxy.context.path'`}
+export KEYSTORE_PATH=${KEYSTORE_PATH:=`read_property 'nifi.security.keystore'`}
+export KEYSTORE_TYPE=${KEYSTORE_TYPE:=`read_property 'nifi.security.keystoreType'`}
+export KEYSTORE_PASSWORD=${KEYSTORE_PASSWORD:=`read_property 'nifi.security.keystorePasswd'`}
+export KEY_PASSWORD=${KEY_PASSWORD:=`read_property 'nifi.security.keyPasswd'`}
+export TRUSTSTORE_PATH=${TRUSTSTORE_PATH:=`read_property 'nifi.security.truststore'`}
+export TRUSTSTORE_TYPE=${TRUSTSTORE_TYPE:=`read_property 'nifi.security.truststoreType'`}
+export TRUSTSTORE_PASSWORD=${TRUSTSTORE_PASSWORD:=`read_property 'nifi.security.truststorePasswd'`}
+export NIFI_WEB_HTTPS_PORT=${NIFI_WEB_HTTPS_PORT:=`read_property 'nifi.web.https.port'`}
+export NIFI_WEB_HTTPS_HOST=${NIFI_WEB_HTTPS_HOST:=`read_property 'nifi.web.https.host'`}
+export NIFI_WEB_PROXY_HOST=${NIFI_WEB_PROXY_HOST:=`read_property 'nifi.web.proxy.host'`}
 
 # login-identity-providers.xml environment variables
 export LDAP_AUTHENTICATION_STRATEGY=${LDAP_AUTHENTICATION_STRATEGY:=`read_xml_property 'Authentication Strategy' ${login_providers_property_xpath} ${login_providers_file}`}
