@@ -51,4 +51,6 @@ export LDAP_USER_SEARCH_FILTER=${LDAP_USER_SEARCH_FILTER:=`read_xml_property 'Us
 export LDAP_IDENTITY_STRATEGY=${LDAP_IDENTITY_STRATEGY:=`read_xml_property 'Identity Strategy' ${login_providers_property_xpath} ${login_providers_file}`}
 
 # authorizers.xml environment variables
-export LDAP_IDENTITY_STRATEGY=${LDAP_IDENTITY_STRATEGY:=`read_xml_property 'Initial Admin Identity' ${access_policy_property_xpath} ${authorizers_file}`}
+export INITIAL_ADMIN_IDENTITY=${INITIAL_ADMIN_IDENTITY:=`read_xml_property 'Initial Admin Identity' ${access_policy_property_xpath} ${authorizers_file}`}
+export NODE_IDENTITY=${NODE_IDENTITY:=`read_xml_property 'Node Identity 1' ${access_policy_property_xpath} ${authorizers_file}`}
+

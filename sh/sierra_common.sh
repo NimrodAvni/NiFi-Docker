@@ -30,9 +30,10 @@ read_property () {
 # 3 - property value
 # 4 - xml file
 add_xml_property () {
-    last_element_name=xmlstarlet sel -t -m "$1[last()]" -v "name()" -n $4
-    xmlstarlet ed -a "$1[@name=\""${last_element_name}"\"]" \
-              -t 'elem' -n 'property' -v $3 \
-              -i "$1[not(@name)]" \
-              -t 'attr' -n 'name' -v $2
+    last_element_name=`xmlstarlet sel -t -m "$1[last()]" -v "@name" -n $4`
+    xmlstarlet ed --inplace -a $1"[@name=\"${last_element_name}\"]" \
+		        -t 'elem' -n 'property' -v "$3" \
+			    -i "$1[not(@name)]" \
+			        -t attr -n name \
+				-v "$2" $4
 }

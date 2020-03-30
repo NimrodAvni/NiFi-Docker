@@ -9,10 +9,10 @@ if ! ( [ -z ${CA_SERVER} ] || [ -z ${CA_TOKEN} ] ); then
     # If these files already exist, then there is no need to request for a new certificate
     if ! ( [ -f ${KEYSTORE_PATH} ] && [ -f ${TRUSTSTORE_PATH} ] && [ -f ${cert_path} ] && [ -f ${config_json_path} ] ); then
         subject_alternative_names=$(hostname -f),${HOSTNAME}
-
+        certificate_owner=${NODE_IDENTITY:-"CN="${HOSTNAME}", OU=NIFI"}
         # Generate certificate
-        echo "Generating Certificate from CA ${CA_SERVER}"
-        ${NIFI_TOOLKIT_HOME}/bin/tls-toolkit.sh client -D ${NODE_IDENTITY:-"CN="${HOSTNAME}",OU=NIFI"} -c ${CA_SERVER} -t ${CA_TOKEN} -p ${CA_PORT:-8443} --subjectAlternativeNames ${subject_alternative_names}
+        echo "Generating Certificate from CA ${CA_SERVER} for ${certificate_owner}"
+        ${NIFI_TOOLKIT_HOME}/bin/tls-toolkit.sh client -D "${certificate_owner}" -c ${CA_SERVER} -t ${CA_TOKEN} -p ${CA_PORT:-8443} --subjectAlternativeNames ${subject_alternative_names}
 
         # Move all files generated to their correct location
         mv ./keystore.jks ${KEYSTORE_PATH}
