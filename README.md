@@ -39,7 +39,7 @@ docker run --name nifi \
 
 This will provide a running instance, exposing the instance UI to the host system on at port 8080, viewable at  `http://localhost:8080/nifi`.
 
-You can also pass in environment variables to change the NiFi communication ports and hostname using the Docker '-e' switch as follows:
+environment variables can also be passed as arguments, to change the NiFi communication ports and hostname using the Docker '-e' switch as follows:
 
 ```
 docker run --name nifi \
@@ -87,7 +87,7 @@ to enable advance clustering features the image provides a way to insert all imp
 | Root Node      | NIFI_ZK_ROOT_NODE      |
 
 ### Standalone Instance, LDAP Secured
-By default, you will need to provide the container a pre-created certificate / keystore / truststore along with all the information related to it (type,password etc..)/
+By default, pre-created certificate / keystore / truststore , along with all the information related to it (type,password etc..), will need to be provided when running a container of the image
 an example to it running such a container:
 ```
 docker run --name nifi-secure --hostname nifi-secure -v \
@@ -104,9 +104,9 @@ LDAP_IDENTITY_STRATEGY='USE_USERNAME' -e LDAP_URL='ldap://ldap:389' -d \
 sierra/nifi:latest
 ```
 **note**: to make the container secure using ldap make sure to configure the **AUTH** environment variable to **ldap**.
-to avoid having to create all the certificates by hand and providing it to the nodes, you can alternatively use the **CA_SERVER** & **CA_TOKEN** (& optionally **CA_PORT**) environment variables to have the container obtain the certificates / keystore / truststore from a CA server, using the *tls-toolkit*.
+to avoid having to create all the certificates by hand and providing it to the nodes, the **CA_SERVER** & **CA_TOKEN** (& optionally **CA_PORT**) arguments can be alternatively used. environment variables to have the container obtain the certificates / keystore / truststore from a CA server, using the *tls-toolkit*.
 
-you can run a container in this fashion like this:
+an example of how to run the container in this fashion.
 ```
 docker run --name nifi-secure --hostname nifi-secure -p 8443:8443 -e AUTH=ldap -e \
 CA_SERVER=ca-server -e CA_TOKEN=myverylongcatoken -e CA_PORT=443 -e \
@@ -139,7 +139,7 @@ the only addition is the NODE_IDENTITY, which will be added as an *initial node 
 
 ## Development
 ### updating NiFi version
-the goal of the image is for upgrading NiFi version to be easy. the only thing that needs to be changed is the Dockerfile, the FROM section needs to be changed to the current apcahe/nifi image you want to be based on.
+the goal of the image is for upgrading NiFi version to be easy. the only thing that needs to be changed is the Dockerfile, the FROM section needs to be changed to the current apcahe/nifi image the this image will be based on.
 
 ### Handling automatically exporting NODE_IDENTITY when generating certificates
 in the current NiFi version (1.11.4) there is still a "bug" where nodes with an empty flow cannot connect if they don't also have an empty / matching authorizations.xml and users.xml. this stops us from easily connecting nodes to the cluster. since authorization files will be created for them, which will prevent them from joining to the cluster. that's why we are currently not exporting the NODE_IDENTITY environment variable, which will cause the image script to generate authorizers. 
@@ -160,7 +160,7 @@ docker pull bitnami/zookeeper
 ```
 run:
 ```
-docker run -p 2181:2181 --name zookeeper --hostname zookeeper -e LLOW_ANONYMOUS_LOGIN=yes --net mynet -d bitnami/zookeeper
+docker run -p 2181:2181 --name zookeeper --hostname zookeeper -e ALLOW_ANONYMOUS_LOGIN=yes --net mynet -d bitnami/zookeeper
 ```
 now the zookeeper running with the address of `zookeeper:2181`
 #### LDAP
