@@ -6,6 +6,9 @@ scripts_dir='/opt/nifi/scripts'
 
 sierra_scripts_dir=${scripts_dir}'/sierra'
 
+# debug
+ls -la .
+
 #replace nifi.properties with nifi.properties_base if it exists
 if [ -f ${NIFI_HOME}/conf/nifi.properties_base ]; then
         echo "copying nifi.properties from nifi.proprties_base"
