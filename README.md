@@ -14,7 +14,6 @@ The Docker image can be built using the following command:
 
 ```
 docker build -t sierra/nifi:latest .
-
 ```
 This build will result in an image tagged sierra/nifi:latest
 ```
