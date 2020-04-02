@@ -1,4 +1,5 @@
 
+
 # NiFi-Docker
 Enhanced Apache NiFi docker image with more abilities and features then the original one
 
@@ -15,9 +16,7 @@ The Docker image can be built using the following command:
 docker build -t sierra/nifi:latest .
 
 ```
-
 This build will result in an image tagged sierra/nifi:latest
-
 ```
 # user @ machine in ~/NiFi-Docker
 $ docker images
@@ -139,4 +138,42 @@ the only addition is the NODE_IDENTITY, which will be added as an *initial node 
 **to be written**
 
 ## Development
-**to be written**
+### updating NiFi version
+the goal of the image is for upgrading NiFi version to be easy. the only thing that needs to be changed is the Dockerfile, the FROM section needs to be changed to the current apcahe/nifi image you want to be based on.
+
+### Handling automatically exporting NODE_IDENTITY when generating certificates
+in the current NiFi version (1.11.4) there is still a "bug" where nodes with an empty flow cannot connect if they don't also have an empty / matching authorizations.xml and users.xml. this stops us from easily connecting nodes to the cluster. since authorization files will be created for them, which will prevent them from joining to the cluster. that's why we are currently not exporting the NODE_IDENTITY environment variable, which will cause the image script to generate authorizers. 
+#### how to fix
+we are dependent on this [JIRA Issue](https://issues.apache.org/jira/browse/NIFI-6849) to be resolved, once it is, we can uncomment the row which exports the NODE_IDENTITY environment variable in the [fetch_certificate.sh](sh/fetch_certificate.sh)
+
+### development environment
+to assist in the development and testing of the image its easy to setup a zookeeper and ldap server on a docker container.
+
+**Note**: it's important to create a docker network for all the containers to be able to communicate between one another
+```
+docker create network mynet
+```
+#### zookeeper
+pull:
+```
+docker pull bitnami/zookeeper
+```
+run:
+```
+docker run -p 2181:2181 --name zookeeper --hostname zookeeper -e LLOW_ANONYMOUS_LOGIN=yes --net mynet -d bitnami/zookeeper
+```
+now the zookeeper running with the address of `zookeeper:2181`
+#### LDAP
+pull:
+```
+docker pull osixia/openldap
+```
+run:
+```
+docker run -p 389:389 -p 636:636 --name ldap --hostname ldap --net mynet -d osixia/openldap
+```
+now the ldap server running with the address of `ldap:389`, to access it using the ldap protocol: `ldap://ldap:389`
+
+**Note**:when running the sierra/nifi image, the `--net mynet` argument needs to be used argument to allow the container to talk to the zookeeper and ldap server containers.
+
+the [prepare.sh](utils/prepare.sh) makes it easy to re-setup the dev environment. it deletes all running containers, rebuilds the sierra/nifi image and sets up the zookeeper and ldap containers
