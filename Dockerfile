@@ -16,7 +16,7 @@ ADD sh/ ${NIFI_BASE_DIR}/scripts/sierra/
 RUN chmod -R +x ${NIFI_BASE_DIR}/scripts/sierra/*.sh
 
 # Switch to user nifi
-USER 1000
+USER nifi
 
 WORKDIR ${NIFI_HOME}
 

@@ -6,13 +6,36 @@ scripts_dir='/opt/nifi/scripts'
 
 sierra_scripts_dir=${scripts_dir}'/sierra'
 
-# debug
-ls -la .
-
-#replace nifi.properties with nifi.properties_base if it exists
+# replace config for config-map
+# TODO: make shorter and more generics
 if [ -f ${NIFI_HOME}/conf/nifi.properties_base ]; then
         echo "copying nifi.properties from nifi.proprties_base"
         \cp $NIFI_HOME/conf/nifi.properties_base $NIFI_HOME/conf/nifi.properties
+fi
+
+if [ -f ${NIFI_HOME}/conf/authorizers.xml_base ]; then
+        echo "copying authorizers.xml from authorizers.xml_base"
+        \cp $NIFI_HOME/conf/authorizers.xml_base $NIFI_HOME/conf/authorizers.xml
+fi
+
+if [ -f ${NIFI_HOME}/conf/login-identity-providers.xml_base ]; then
+        echo "copying login-identity-providers.xml from login-identity-providers.xml_base"
+        \cp $NIFI_HOME/conf/login-identity-providers.xml_base $NIFI_HOME/conf/login-identity-providers.xml
+fi
+
+if [ -f ${NIFI_HOME}/conf/bootstrap.conf_base ]; then
+        echo "copying bootstrap.conf from bootstrap.conf_base"
+        \cp $NIFI_HOME/conf/bootstrap.conf_base $NIFI_HOME/conf/bootstrap.conf
+fi
+
+if [ -f ${NIFI_HOME}/conf/logback.xml_base ]; then
+        echo "copying logback.xml from logback.xml_base"
+        \cp $NIFI_HOME/conf/logback.xml_base $NIFI_HOME/conf/logback.xml
+fi
+
+if [ -f ${NIFI_HOME}/conf/state-management.xml_base ]; then
+        echo "copying state-management.xml from state-management.xml_base"
+        \cp $NIFI_HOME/conf/state-management.xml_base $NIFI_HOME/conf/state-management.xml
 fi
 
 # run property mapper
