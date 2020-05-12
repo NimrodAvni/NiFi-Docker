@@ -8,6 +8,36 @@ Enhanced Apache NiFi docker image with more abilities and features then the orig
 - Fix Bugs / add missing features to the official [NiFi Docker image](https://github.com/apache/nifi/tree/master/nifi-docker/dockerhub)
 - Provide backward and forward compatibility with the official [NiFi Docker image](https://github.com/apache/nifi/tree/master/nifi-docker/dockerhub)
 
+## Features
+
+## Certificate generation
+If all the mandatory variables are set, before startup, certificates will be requested automatically from a certificate authority
+using the NiFi tls-toolkit
+
+| Environment Variable                                  | Description                   |
+|-------------------------------------------|----------------------------------------|
+| **CA_SERVER**                      | Server to request certificates from                   |
+| **CA_TOKEN**                 | Token to use when requesting certificates from the CA server          |
+| CA_PORT           | The port to use when generating certificates with the tls toolkit, default: 8443        |
+
+*For the image to generate certificates, **CA_SERVER** and **CA_TOKEN** must be set*
+ 
+## Pull additional nars from git
+If all the mandatory variables are set, before startup, additional nars will be requested automatically
+from a git repository
+*Important note: currently, this will configure NiFi to automatically treat the directory of pulled nars another lib directory, the user must
+configure it itself, to avoid confusion and hidden situations*
+
+| Environment Variable                                  | Description                   |
+|-------------------------------------------|----------------------------------------|
+| **NAR_GIT_REPO**        | The git repository from which to pull the additional nars      |
+| **NAR_GIT_USER**    | The git user to user to pull the additional nars  |
+| **NAR_GIT_TOKEN**             | The git access token to use to pull the additional nars                 |
+| NAR_GIT_BRANCH                  | The git branch to pull the additional nars from, default: master                      |
+| NAR_GIT_DIRECTORY  | The directory to store the pulled nars, defauls: ${NIFI_HOME}/lib2                |
+
+*For the image to pull nars from the git repository, **NAR_GIT_REPO**, **NAR_GIT_USER** and **NAR_GIT_TOKEN** must be set*
+
 ## Building
 
 The Docker image can be built using the following command:
